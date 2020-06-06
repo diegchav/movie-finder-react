@@ -3,16 +3,26 @@ import PropTypes from 'prop-types';
 
 import MovieStyled from './MovieStyled';
 
-const Movie = ({ title, image }) => (
-    <MovieStyled>
-        <img src={image} alt={title} />
-    </MovieStyled>
-);
+const Movie = ({ movie, onOpenOverlay }) => {
+    const { image, title } = movie;
+
+    return (
+        <MovieStyled onClick={() => onOpenOverlay(movie)}>
+            <img src={image} alt={title} />
+        </MovieStyled>
+    );
+};
 
 Movie.propTypes = {
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
+    movie: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        image: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        rate: PropTypes.number.isRequired,
+        release_date: PropTypes.string.isRequired,
+        overview: PropTypes.string.isRequired
+    }).isRequired,
+    onOpenOverlay: PropTypes.func.isRequired
 };
 
 export default Movie;
