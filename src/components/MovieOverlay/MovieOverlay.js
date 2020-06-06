@@ -6,8 +6,8 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import MovieOverlayStyled from './MovieOverlayStyled';
 
 const MovieOverlay = ({ image, title, rate, release_date, overview, onClose }) => (
-    <MovieOverlayStyled>
-        <div className="container-box">
+    <MovieOverlayStyled onClick={() => onClose()}>
+        <div className="container-box" onClick={(e) => e.stopPropagation()}>
             <IconButton className="close" onClick={() => onClose()}>
                 <CancelIcon />
             </IconButton>
