@@ -6,7 +6,8 @@ import Movie from '../Movie/Movie';
 import {
     API_PATH,
     API_IMAGE_PATH,
-    API_KEY
+    API_KEY,
+    LOCAL_STORAGE_TOP_RATED
 } from '../../constants';
 
 import MovieListStyled from './MovieListStyled';
@@ -16,6 +17,12 @@ const MovieList = () => {
 
     useEffect(() => {
         const loadTopRatedMovies = async () => {
+            if (localStorage.getItem(LOCAL_STORAGE_TOP_RATED)) {
+                const _movies = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TOP_RATED));
+                setMovies(_movies);
+                return;
+            }
+
             try {
                 const topRatedMoviesUrl = `${API_PATH}/movie/top_rated?api_key=${API_KEY}`;
                 const axiosResponse = await axios.get(topRatedMoviesUrl);
@@ -28,6 +35,7 @@ const MovieList = () => {
                     }
                 ));
                 setMovies(_movies);
+                localStorage.setItem(LOCAL_STORAGE_TOP_RATED, JSON.stringify(_movies));
             } catch (err) {
                 console.error(err);
             }
