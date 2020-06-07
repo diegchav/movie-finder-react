@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext, useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
+import {
+    SET_MOVIES,
+    Context
+} from '../../store';
+
+import retrieveData from '../../helpers/retrieve-data';
+import mapApiMovieToLocalMovie from '../../helpers/map-api-movie-to-local-movie';
+
+import {
+    API_PATH,
+    API_SEARCH_PATH,
+    API_KEY
+} from '../../constants';
+
 import SearchStyled from './SearchStyled';
 
-const Search = ({ onSearch }) => {
+const Search = () => {
+    const { dispatch } = useContext(Context);
+
     const [searchInput, setSearchInput] = useState('');
 
     const handleChange = (e) => {
@@ -13,8 +28,18 @@ const Search = ({ onSearch }) => {
         setSearchInput(value);
     };
 
-    const handleSearch = () => {
-        onSearch(searchInput);
+    const handleSearch = async () => {
+        if (searchInput === '') return;
+
+        const searchQuery = encodeURI(searchInput.trim());
+        const searchUrl = `${API_PATH}${API_SEARCH_PATH}?api_key=${API_KEY}&query=${searchQuery}`;
+        const data = await retrieveData(searchUrl, (response) => {
+            const movies = response.results;
+            return movies.map(mapApiMovieToLocalMovie);
+        });
+
+        dispatch({ type: SET_MOVIES, payload: data });
+
         setSearchInput('');
     };
 
@@ -26,10 +51,6 @@ const Search = ({ onSearch }) => {
             </IconButton>
         </SearchStyled>
     );
-};
-
-Search.propTypes = {
-    onSearch: PropTypes.func.isRequired
 };
 
 export default Search;

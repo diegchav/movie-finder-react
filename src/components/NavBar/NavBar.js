@@ -1,21 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import {
+    OPEN_SIDEBAR,
+    Context
+} from '../../store';
+
 import NavBarStyled from './NavBarStyled';
 
-const NavBar = ({ onOpenSideBar }) => (
-    <NavBarStyled>
-        <h1 className="title">Movie Finder</h1>
-        <IconButton className="menu-icon" onClick={() => onOpenSideBar()}>
-            <MenuIcon style={{ color: 'black' }} />
-        </IconButton>
-    </NavBarStyled>
-);
+const NavBar = () => {
+    const { dispatch } = useContext(Context);
 
-NavBar.propTypes = {
-    onOpenSideBar: PropTypes.func.isRequired
+    return (
+        <NavBarStyled>
+            <h1 className="title">Movie Finder</h1>
+            <IconButton className="menu-icon" onClick={() => dispatch({ type: OPEN_SIDEBAR })}>
+                <MenuIcon style={{ color: 'black' }} />
+            </IconButton>
+        </NavBarStyled>
+    );
 };
 
 export default NavBar;

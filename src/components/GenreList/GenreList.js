@@ -1,11 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 
 import Genre from '../Genre/Genre';
 
+import {
+    Context
+} from '../../store';
+
 import GenreListStyled from './GenreListStyled';
 
-const GenreList = ({ genres, filteredGenres, onAddOrRemoveFilter }) => {return (
+const GenreList = () => {
+    const { state } = useContext(Context);
+    const { genres, filteredGenres } = state;
+
+    return (
         <GenreListStyled>
             <h1 className="title">Genres</h1>
             <div className="genres">
@@ -14,7 +21,6 @@ const GenreList = ({ genres, filteredGenres, onAddOrRemoveFilter }) => {return (
                     <Genre
                         key={genre.id}
                         isFiltered={filteredGenres.has(genre.id)}
-                        onAddOrRemoveFilter={onAddOrRemoveFilter}
                         {...genre}
                     />
                 ))
@@ -22,15 +28,6 @@ const GenreList = ({ genres, filteredGenres, onAddOrRemoveFilter }) => {return (
             </div>
         </GenreListStyled>
     );
-};
-
-GenreList.propTypes = {
-    genres: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired
-    })).isRequired,
-    filteredGenres: PropTypes.instanceOf(Set).isRequired,
-    onAddOrRemoveFilter: PropTypes.func.isRequired
 };
 
 export default GenreList;

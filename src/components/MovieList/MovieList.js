@@ -1,30 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 
 import Movie from '../Movie/Movie';
 
+import { Context } from '../../store';
+
 import MovieListStyled from './MovieListStyled';
 
-const MovieList = ({ movies, onOpenOverlay }) => {
+const MovieList = () => {
+    const { state } = useContext(Context);
+    const { filteredMovies: movies } = state;
+
     return (
         <MovieListStyled>
         {
-            movies.map((movie) => <Movie key={movie.id} movie={movie} onOpenOverlay={onOpenOverlay} />)
+            movies.map((movie) => <Movie key={movie.id} movie={movie} />)
         }
         </MovieListStyled>
     );
-};
-
-MovieList.propTypes = {
-    movies: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        rate: PropTypes.number.isRequired,
-        release_date: PropTypes.string.isRequired,
-        overview: PropTypes.string.isRequired
-    })).isRequired,
-    onOpenOverlay: PropTypes.func.isRequired
 };
 
 export default MovieList;

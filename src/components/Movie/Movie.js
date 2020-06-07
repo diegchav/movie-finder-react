@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+
+import {
+    OPEN_OVERLAY,
+    Context
+} from '../../store';
 
 import MovieStyled from './MovieStyled';
 
-const Movie = ({ movie, onOpenOverlay }) => {
+const Movie = ({ movie }) => {
+    const { dispatch } = useContext(Context);
+
     const { image, title, rate, overview } = movie;
 
     return (
         <MovieStyled>
             <div className="image">
-                <img src={image} alt={title} onClick={() => onOpenOverlay(movie)} />
+                <img src={image} alt={title} onClick={() => dispatch({ type: OPEN_OVERLAY, payload: movie })} />
             </div>
             <div className="content">
                 <div className="header">
@@ -30,8 +37,7 @@ Movie.propTypes = {
         rate: PropTypes.number.isRequired,
         release_date: PropTypes.string.isRequired,
         overview: PropTypes.string.isRequired
-    }).isRequired,
-    onOpenOverlay: PropTypes.func.isRequired
+    }).isRequired
 };
 
 export default Movie;
