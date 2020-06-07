@@ -38,6 +38,13 @@ const SideBarStyled = styled.div`
             cursor: pointer;
         }
     }
+
+    @media (min-width: 650px) {
+        .content {
+            height: 100%;
+            justify-content: space-between;
+        }
+    }
 `;
 
 export default SideBarStyled;
