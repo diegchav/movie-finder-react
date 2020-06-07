@@ -21,7 +21,9 @@ import AppStyled from './AppStyled';
 
 const App = () => {
     const [genres, setGenres] = useState([]);
+    const [filteredGenres, setFilteredGenres] = useState(new Set());
     const [movies, setMovies] = useState([]);
+    const [filteredMovies, setFilteredMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [isOverlayVisible, setIsOverlayVisible] = useState(false);
     const [isSideBarVisible, setIsSideBarVisible] = useState(false);
@@ -62,16 +64,44 @@ const App = () => {
                         title: movie.title,
                         rate: movie.vote_average,
                         release_date: movie.release_date,
-                        overview: movie.overview
+                        overview: movie.overview,
+                        genres: movie.genre_ids
                     }
                 ));
             });
             setMovies(data);
+            setFilteredMovies(data);
         };
 
         loadGenres();
         loadTopRatedMovies();
     }, []);
+
+    const handleAddOrRemoveGenreFilter = (genreId) => {
+        const newSet = new Set(filteredGenres);
+        if (filteredGenres.has(genreId)) {
+            newSet.delete(genreId);
+        } else {
+            newSet.add(genreId);
+        }
+        setFilteredGenres(newSet);
+    };
+
+    const handleApplyFilters = () => {
+        let _filteredMovies = [];
+
+        if (filteredGenres.size === 0) {
+            _filteredMovies = [...movies];
+        } else {
+            _filteredMovies = movies.filter((movie) => {
+                const { genres } = movie;
+                return genres.some((item) => filteredGenres.has(item));
+            });
+        }
+
+        setFilteredMovies(_filteredMovies);
+        setIsSideBarVisible(false);
+    };
 
     const handleOpenOverlay = (movie) => {
         setSelectedMovie(movie);
@@ -95,9 +125,16 @@ const App = () => {
         <AppStyled>
             { isOverlayVisible && <MovieOverlay onClose={handleCloseOverlay} {...selectedMovie} /> }
             <NavBar onOpenSideBar={handleOpenSideBar} />
-            { isSideBarVisible && <SideBar onClose={handleCloseSideBar} genres={genres} /> }
+            { isSideBarVisible &&
+                <SideBar
+                    onClose={handleCloseSideBar}
+                    genres={genres}
+                    filteredGenres={filteredGenres}
+                    onAddOrRemoveFilter={handleAddOrRemoveGenreFilter}
+                    onApplyFilters={handleApplyFilters} />
+            }
             <Search />
-            <MovieList movies={movies} onOpenOverlay={handleOpenOverlay} />
+            <MovieList movies={filteredMovies} onOpenOverlay={handleOpenOverlay} />
         </AppStyled>
     );
 };

@@ -7,14 +7,17 @@ import GenreList from '../GenreList/GenreList';
 
 import SideBarStyled from './SideBarStyled';
 
-const SideBar = ({ onClose, genres }) => (
+const SideBar = ({ onClose, genres, filteredGenres, onAddOrRemoveFilter, onApplyFilters }) => (
     <SideBarStyled>
         <div className="close">
             <IconButton onClick={() => onClose()}>
                 <CloseIcon />
             </IconButton>
         </div>
-        <GenreList genres={genres} />
+        <div className="content">
+            <GenreList genres={genres} filteredGenres={filteredGenres} onAddOrRemoveFilter={onAddOrRemoveFilter} />
+            <button className="apply" onClick={onApplyFilters}>Apply Filters</button>
+        </div>
     </SideBarStyled>
 );
 
@@ -23,7 +26,10 @@ SideBar.propTypes = {
     genres: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired
-    })).isRequired
+    })).isRequired,
+    filteredGenres: PropTypes.instanceOf(Set).isRequired,
+    onAddOrRemoveFilter: PropTypes.func.isRequired,
+    onApplyFilters: PropTypes.func.isRequired
 };
 
 export default SideBar;
