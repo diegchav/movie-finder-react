@@ -13,6 +13,7 @@ import {
     API_KEY,
     API_GENRES_PATH,
     API_TOP_RATED_PATH,
+    API_SEARCH_PATH,
     LOCAL_STORAGE_GENRES,
     LOCAL_STORAGE_TOP_RATED
 } from './constants';
@@ -28,26 +29,33 @@ const App = () => {
     const [isOverlayVisible, setIsOverlayVisible] = useState(false);
     const [isSideBarVisible, setIsSideBarVisible] = useState(false);
 
+    const retrieveData = async (urlToRetrieveFrom, responseHandler) => {
+        let data = [];
+        try {
+            const axiosResponse = await axios.get(urlToRetrieveFrom);
+            data = responseHandler(axiosResponse.data);
+        } catch (err) {
+            console.error(err);
+        }
+
+        return data;
+    };
+
     useEffect(() => {
-        const loadFromLocalStorageOrRetrieve = async (localStorageKey, urlToRetrieveFrom, responseHandler) => {
+        const loadFromLocalStorageOrRetrieveData = async (localStorageKey, urlToRetrieveFrom, responseHandler) => {
             if (localStorage.getItem(localStorageKey)) {
                 const data = JSON.parse(localStorage.getItem(localStorageKey));
                 return data;
             }
 
-            try {
-                const axiosResponse = await axios.get(urlToRetrieveFrom);
-                const data = responseHandler(axiosResponse.data);
-                localStorage.setItem(localStorageKey, JSON.stringify(data));
-                return data;
-            } catch (err) {
-                console.error(err);
-            }
+            const data = await retrieveData(urlToRetrieveFrom, responseHandler);
+            localStorage.setItem(localStorageKey, JSON.stringify(data));
+            return data;
         };
 
         const loadGenres = async () => {
             const genresUrl = `${API_PATH}${API_GENRES_PATH}?api_key=${API_KEY}`;
-            const data = await loadFromLocalStorageOrRetrieve(LOCAL_STORAGE_GENRES, genresUrl, (response) => {
+            const data = await loadFromLocalStorageOrRetrieveData(LOCAL_STORAGE_GENRES, genresUrl, (response) => {
                 return response.genres;
             });
             setGenres(data);
@@ -55,12 +63,12 @@ const App = () => {
 
         const loadTopRatedMovies = async () => {
             const topRatedMoviesUrl = `${API_PATH}${API_TOP_RATED_PATH}?api_key=${API_KEY}`;
-            const data = await loadFromLocalStorageOrRetrieve(LOCAL_STORAGE_TOP_RATED, topRatedMoviesUrl, (response) => {
+            const data = await loadFromLocalStorageOrRetrieveData(LOCAL_STORAGE_TOP_RATED, topRatedMoviesUrl, (response) => {
                 const _movies = response.results;
                 return _movies.map((movie) => (
                     {
                         id: movie.id,
-                        image: `${API_IMAGE_PATH}/${movie.poster_path}`,
+                        image: movie.poster_path ? `${API_IMAGE_PATH}/${movie.poster_path}` : '',
                         title: movie.title,
                         rate: movie.vote_average,
                         release_date: movie.release_date,
@@ -76,6 +84,30 @@ const App = () => {
         loadGenres();
         loadTopRatedMovies();
     }, []);
+
+    const handleSearch = async (searchInput) => {
+        if (searchInput === '') return;
+
+        const searchQuery = encodeURI(searchInput.trim());
+        const searchUrl = `${API_PATH}${API_SEARCH_PATH}?api_key=${API_KEY}&query=${searchQuery}`;
+        const data = await retrieveData(searchUrl, (response) => {
+            const _movies = response.results;
+            return _movies.map((movie) => (
+                {
+                    id: movie.id,
+                    image: movie.poster_path ? `${API_IMAGE_PATH}/${movie.poster_path}` : '',
+                    title: movie.title,
+                    rate: movie.vote_average,
+                    release_date: movie.release_date,
+                    overview: movie.overview,
+                    genres: movie.genre_ids
+                }
+            ));
+        });
+        setMovies(data);
+        setFilteredMovies(data);
+        setFilteredGenres(new Set());
+    };
 
     const handleAddOrRemoveGenreFilter = (genreId) => {
         const newSet = new Set(filteredGenres);
@@ -133,7 +165,7 @@ const App = () => {
                     onAddOrRemoveFilter={handleAddOrRemoveGenreFilter}
                     onApplyFilters={handleApplyFilters} />
             }
-            <Search />
+            <Search onSearch={handleSearch} />
             <MovieList movies={filteredMovies} onOpenOverlay={handleOpenOverlay} />
         </AppStyled>
     );
