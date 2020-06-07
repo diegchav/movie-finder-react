@@ -62,6 +62,7 @@ const MovieStyled = styled.div`
             .overview {
                 display: block;
                 margin-top: 1rem;
+                overflow:hidden;
             }
         }
     }

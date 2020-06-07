@@ -19,6 +19,10 @@ const MovieListStyled = styled.div`
     @media (min-width: 768px) {
         grid-template-columns: repeat(1, 1fr);
     }
+
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
 `;
 
 export default MovieListStyled;

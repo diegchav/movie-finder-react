@@ -10,7 +10,7 @@ const GenreListStyled = styled.div`
         }
     }
 
-    @media (min-width: 769px) {
+    @media (min-width: 768px) {
         .genres {
             display: block;
         }
