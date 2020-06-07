@@ -3,21 +3,18 @@ import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-import GenreList from '../GenreList/GenreList';
+import Filter from '../Filter/Filter';
 
 import SideBarStyled from './SideBarStyled';
 
-const SideBar = ({ onClose, genres, filteredGenres, onAddOrRemoveFilter, onApplyFilters }) => (
+const SideBar = (props) => (
     <SideBarStyled>
         <div className="close">
-            <IconButton onClick={() => onClose()}>
+            <IconButton onClick={() => props.onClose()}>
                 <CloseIcon />
             </IconButton>
         </div>
-        <div className="content">
-            <GenreList genres={genres} filteredGenres={filteredGenres} onAddOrRemoveFilter={onAddOrRemoveFilter} />
-            <button className="apply" onClick={onApplyFilters}>Apply Filters</button>
-        </div>
+        <Filter {...props} />
     </SideBarStyled>
 );
 
