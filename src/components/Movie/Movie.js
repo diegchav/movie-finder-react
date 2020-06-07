@@ -7,9 +7,9 @@ const Movie = ({ movie, onOpenOverlay }) => {
     const { image, title, rate, overview } = movie;
 
     return (
-        <MovieStyled onClick={() => onOpenOverlay(movie)}>
+        <MovieStyled>
             <div className="image">
-                <img src={image} alt={title} />
+                <img src={image} alt={title} onClick={() => onOpenOverlay(movie)} />
             </div>
             <div className="content">
                 <div className="header">

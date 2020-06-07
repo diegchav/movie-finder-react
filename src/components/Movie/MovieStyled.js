@@ -4,11 +4,11 @@ const MovieStyled = styled.div`
     border: 1px solid #f0f0f0;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
 
     .image {
         img {
             width: 100%;
+            cursor: pointer;
         }
     }
 
