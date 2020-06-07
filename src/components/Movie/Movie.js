@@ -8,7 +8,11 @@ const Movie = ({ movie, onOpenOverlay }) => {
 
     return (
         <MovieStyled onClick={() => onOpenOverlay(movie)}>
-            <img src={image} alt={title} />
+            {
+                image
+                ? <img src={image} alt={title} />
+                : <span>{title}</span>
+            }
         </MovieStyled>
     );
 };
