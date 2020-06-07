@@ -2,9 +2,7 @@ import React, { useContext, useEffect } from 'react';
 
 import MovieOverlay from './components/MovieOverlay/MovieOverlay';
 import NavBar from './components/NavBar/NavBar';
-import SideBar from './components/SideBar/SideBar';
-import Search from './components/Search/Search';
-import MovieList from './components/MovieList/MovieList';
+import Body from './components/Body/Body';
 
 import {
     SET_GENRES,
@@ -70,11 +68,7 @@ const App = () => {
         <AppStyled>
             { isOverlayVisible && <MovieOverlay /> }
             <NavBar />
-            <div className="body">
-                <SideBar />
-                <Search />
-                <MovieList />
-            </div>
+            <Body />
         </AppStyled>
     );
 };

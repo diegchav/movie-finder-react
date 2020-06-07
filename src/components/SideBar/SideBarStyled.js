@@ -21,6 +21,10 @@ const SideBarStyled = styled.div`
             height: 24px;
         }
     }
+
+    @media (min-width: 768px) {
+        display: none;
+    }
 `;
 
 export default SideBarStyled;

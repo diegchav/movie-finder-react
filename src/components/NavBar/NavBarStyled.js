@@ -5,6 +5,7 @@ const NavBarStyled = styled.div`
     align-items: center;
     padding: 0 1rem;
     background-color: #f0f0f0;
+    height: 48px;
 
     .title {
         font-size: 1.5rem;
@@ -13,6 +14,12 @@ const NavBarStyled = styled.div`
 
     .menu-icon {
         margin-left: auto;
+    }
+
+    @media (min-width: 768px) {
+        .menu-icon {
+            display: none;
+        }
     }
 `;
 

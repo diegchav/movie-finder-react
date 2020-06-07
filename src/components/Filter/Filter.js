@@ -14,8 +14,10 @@ const Filter = () => {
 
     return (
         <FilterStyled>
-            <GenreList />
-            <button className="filter" onClick={() => dispatch({ type: FILTER_MOVIES })}>Filter</button>
+            <div className="container">
+                <GenreList />
+                <button className="filter" onClick={() => dispatch({ type: FILTER_MOVIES })}>Filter</button>
+            </div>
         </FilterStyled>
     );
 };

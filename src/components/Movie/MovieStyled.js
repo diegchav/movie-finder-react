@@ -39,6 +39,32 @@ const MovieStyled = styled.div`
             display: none;
         }
     }
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+        padding: .5rem;
+        height: 300px;
+
+        img {
+            width: 35%;
+            height: 100%;
+        }
+
+        .content {
+            width: 65%;
+            flex-direction: column;
+            padding-left: 1rem;
+
+            .header {
+                width: 100%;
+            }
+
+            .overview {
+                display: block;
+                margin-top: 1rem;
+            }
+        }
+    }
 `;
 
 export default MovieStyled;

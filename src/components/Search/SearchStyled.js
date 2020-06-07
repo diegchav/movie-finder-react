@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const SearchStyled = styled.div`
-    margin: 1.5rem 1rem;
     display: flex;
 
     input[type=text] {
