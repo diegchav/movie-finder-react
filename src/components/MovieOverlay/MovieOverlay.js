@@ -12,7 +12,7 @@ const MovieOverlay = ({ image, title, rate, release_date, overview, onClose }) =
                 <CancelIcon />
             </IconButton>
             <img src={image} alt={title} />
-            <div className="info">
+            <div className="header">
                 <div className="title-date">
                     <span className="title">{title}</span>
                     <span className="date">{release_date}</span>

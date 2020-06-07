@@ -149,16 +149,18 @@ const App = () => {
         <AppStyled>
             { isOverlayVisible && <MovieOverlay onClose={handleCloseOverlay} {...selectedMovie} /> }
             <NavBar onOpenSideBar={handleOpenSideBar} />
-            { isSideBarVisible &&
-                <SideBar
-                    onClose={handleCloseSideBar}
-                    genres={genres}
-                    filteredGenres={filteredGenres}
-                    onAddOrRemoveFilter={handleAddOrRemoveGenreFilter}
-                    onApplyFilters={handleApplyFilters} />
-            }
-            <Search onSearch={handleSearch} />
-            <MovieList movies={filteredMovies} onOpenOverlay={handleOpenOverlay} />
+            <div className="body">
+                { isSideBarVisible &&
+                    <SideBar
+                        onClose={handleCloseSideBar}
+                        genres={genres}
+                        filteredGenres={filteredGenres}
+                        onAddOrRemoveFilter={handleAddOrRemoveGenreFilter}
+                        onApplyFilters={handleApplyFilters} />
+                }
+                <Search onSearch={handleSearch} />
+                <MovieList movies={filteredMovies} onOpenOverlay={handleOpenOverlay} />
+            </div>
         </AppStyled>
     );
 };

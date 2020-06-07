@@ -34,7 +34,7 @@ const MovieOverlayStyled = styled.div`
             max-width: 100%;
         }
 
-        .info {
+        .header {
             display: flex;
             align-items: center;
             width: 100%;
