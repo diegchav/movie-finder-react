@@ -64,14 +64,14 @@ const App = () => {
         loadTopRatedMovies();
     }, [dispatch]);
 
-    const { isOverlayVisible, isSideBarVisible } = state;
+    const { isOverlayVisible } = state;
 
     return (
         <AppStyled>
             { isOverlayVisible && <MovieOverlay /> }
             <NavBar />
             <div className="body">
-                { isSideBarVisible && <SideBar /> }
+                <SideBar />
                 <Search />
                 <MovieList />
             </div>

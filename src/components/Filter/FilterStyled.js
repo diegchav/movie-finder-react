@@ -5,6 +5,7 @@ const FilterStyled = styled.div`
     flex-direction: column;
     overflow-y: scroll;
     margin: 0 2rem;
+    background-color: #f0f0f0;;
 
     .filter {
         padding: .5rem 0;

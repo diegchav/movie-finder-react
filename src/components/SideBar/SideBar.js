@@ -12,17 +12,25 @@ import {
 import SideBarStyled from './SideBarStyled';
 
 const SideBar = () => {
-    const { dispatch } = useContext(Context);
+    const { state, dispatch } = useContext(Context);
+    const { isSideBarVisible } = state;
 
     return (
-        <SideBarStyled>
-            <div className="close">
-                <IconButton onClick={() => dispatch({ type: CLOSE_SIDEBAR })}>
-                    <CloseIcon />
-                </IconButton>
-            </div>
-            <Filter />
-        </SideBarStyled>
+        <>
+        {
+            isSideBarVisible
+            ?
+                <SideBarStyled>
+                    <div className="close">
+                        <IconButton onClick={() => dispatch({ type: CLOSE_SIDEBAR })}>
+                            <CloseIcon />
+                        </IconButton>
+                    </div>
+                    <Filter />
+                </SideBarStyled>
+            : null
+        }
+        </>
     );
 };
 
