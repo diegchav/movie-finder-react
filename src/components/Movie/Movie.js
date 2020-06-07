@@ -4,30 +4,19 @@ import PropTypes from 'prop-types';
 import MovieStyled from './MovieStyled';
 
 const Movie = ({ movie, onOpenOverlay }) => {
-    const { image, title, release_date, rate, overview } = movie;
+    const { image, title, rate, overview } = movie;
 
     return (
         <MovieStyled onClick={() => onOpenOverlay(movie)}>
             <div className="image">
-            {
-                image
-                ? <img src={image} alt={title} />
-                : <span>{title}</span>
-            }
+                <img src={image} alt={title} />
             </div>
             <div className="content">
                 <div className="header">
-                    <div className="title-date">
-                        <span className="title">{title}</span>
-                        <dspan className="date">{release_date}</dspan>
-                    </div>
-                    <span className="rate">
-                        {rate}
-                    </span>
+                    <span className="title">{title}</span>
+                    <span className="rate">{rate}</span>
                 </div>
-                <div className="overview">
-                    {overview}
-                </div>
+                <div className="overview">{overview}</div>
             </div>
         </MovieStyled>
     );

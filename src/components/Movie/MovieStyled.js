@@ -1,49 +1,27 @@
 import styled from 'styled-components';
 
 const MovieStyled = styled.div`
-    cursor: pointer;
     border: 1px solid #f0f0f0;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
 
     .image {
-        display: flex;
-        align-items: center;
-
         img {
-            width: 120px;
-            height: 200px;
-        }
-
-        span {
-            text-align: center;
+            width: 100%;
         }
     }
 
     .content {
-        flex: auto;
-        padding: .5rem;
-        height: 100%;
+        padding: 1rem .5rem;
 
         .header {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
+            align-items: center;
 
-            .title-date {
-                display: flex;
-                flex-direction: column;
-
-                .title {
-                    font-size: 1.2rem;
-                    font-weight: bolder;
-                }
-
-                .date {
-                    margin-top: .5rem;
-                    font-size: .75rem;
-                }
+            .title {
+                font-size: .9rem;
+                font-weight: bolder;
             }
 
             .rate {
@@ -55,7 +33,6 @@ const MovieStyled = styled.div`
         }
 
         .overview {
-            margin-top: 1rem;
             display: none;
         }
     }

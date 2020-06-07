@@ -62,7 +62,7 @@ const MovieOverlayStyled = styled.div`
         }
 
         .overview {
-            margin-top: 1.5rem;
+            margin: 1.5rem 0;
             font-size: .8rem;
         }
 
