@@ -24,39 +24,38 @@ const App = () => {
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [isOverlayVisible, setIsOverlayVisible] = useState(false);
-    const [isSideBarVisible, setIsSideBarVisible] = useState(true);
+    const [isSideBarVisible, setIsSideBarVisible] = useState(false);
 
     useEffect(() => {
-        const loadGenres = async () => {
-            if (localStorage.getItem(LOCAL_STORAGE_GENRES)) {
-                const _genres = JSON.parse(localStorage.getItem(LOCAL_STORAGE_GENRES));
-                setGenres(_genres);
-                return;
+        const loadFromLocalStorageOrRetrieve = async (localStorageKey, urlToRetrieveFrom, responseHandler) => {
+            if (localStorage.getItem(localStorageKey)) {
+                const data = JSON.parse(localStorage.getItem(localStorageKey));
+                return data;
             }
 
             try {
-                const genresUrl = `${API_PATH}${API_GENRES_PATH}?api_key=${API_KEY}`;
-                const axiosResponse = await axios.get(genresUrl);
-                const _genres = axiosResponse.data.genres;
-                setGenres(_genres);
-                localStorage.setItem(LOCAL_STORAGE_GENRES, JSON.stringify(_genres));
+                const axiosResponse = await axios.get(urlToRetrieveFrom);
+                const data = responseHandler(axiosResponse.data);
+                localStorage.setItem(localStorageKey, JSON.stringify(data));
+                return data;
             } catch (err) {
                 console.error(err);
             }
         };
 
-        const loadTopRatedMovies = async () => {
-            if (localStorage.getItem(LOCAL_STORAGE_TOP_RATED)) {
-                const _movies = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TOP_RATED));
-                setMovies(_movies);
-                return;
-            }
+        const loadGenres = async () => {
+            const genresUrl = `${API_PATH}${API_GENRES_PATH}?api_key=${API_KEY}`;
+            const data = await loadFromLocalStorageOrRetrieve(LOCAL_STORAGE_GENRES, genresUrl, (response) => {
+                return response.genres;
+            });
+            setGenres(data);
+        };
 
-            try {
-                const topRatedMoviesUrl = `${API_PATH}${API_TOP_RATED_PATH}?api_key=${API_KEY}`;
-                const axiosResponse = await axios.get(topRatedMoviesUrl);
-                const results = axiosResponse.data.results;
-                const _movies = results.map((movie) => (
+        const loadTopRatedMovies = async () => {
+            const topRatedMoviesUrl = `${API_PATH}${API_TOP_RATED_PATH}?api_key=${API_KEY}`;
+            const data = await loadFromLocalStorageOrRetrieve(LOCAL_STORAGE_TOP_RATED, topRatedMoviesUrl, (response) => {
+                const _movies = response.results;
+                return _movies.map((movie) => (
                     {
                         id: movie.id,
                         image: `${API_IMAGE_PATH}/${movie.poster_path}`,
@@ -66,11 +65,8 @@ const App = () => {
                         overview: movie.overview
                     }
                 ));
-                setMovies(_movies);
-                localStorage.setItem(LOCAL_STORAGE_TOP_RATED, JSON.stringify(_movies));
-            } catch (err) {
-                console.error(err);
-            }
+            });
+            setMovies(data);
         };
 
         loadGenres();
