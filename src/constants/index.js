@@ -9,3 +9,5 @@ export const API_SEARCH_PATH = '/search/movie';
 // Local storage
 export const LOCAL_STORAGE_TOP_RATED = 'ls_top_rated';
 export const LOCAL_STORAGE_GENRES = 'ls_genres';
+
+export const DEFAULT_IMAGE = process.env.PUBLIC_URL + '/default.png';
