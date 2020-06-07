@@ -28,6 +28,16 @@ const BodyStyled = styled.div`
             width: 70%;
         }
     }
+
+    @media (min-width: 1200px) {
+        .filters {
+            width: 20%;
+        }
+
+        .main {
+            width: 80%;
+        }
+    }
 `;
 
 export default BodyStyled;

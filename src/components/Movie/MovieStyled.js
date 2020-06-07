@@ -57,12 +57,17 @@ const MovieStyled = styled.div`
 
             .header {
                 width: 100%;
+
+                title {
+                    font-size: 1rem;
+                }
             }
 
             .overview {
                 display: block;
-                margin-top: 1rem;
+                margin-top: 1.1rem;
                 overflow:hidden;
+                font-size: .85rem;
             }
         }
     }

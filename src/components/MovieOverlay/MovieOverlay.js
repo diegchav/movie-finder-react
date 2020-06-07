@@ -24,19 +24,21 @@ const MovieOverlay = () => {
                     <CancelIcon />
                 </IconButton>
                 <img src={image} alt={title} />
-                <div className="header">
-                    <div className="title-date">
-                        <span className="title">{title}</span>
-                        <span className="date">{release_date}</span>
+                <div className="content">
+                    <div className="header">
+                        <div className="title-date">
+                            <span className="title">{title}</span>
+                            <span className="date">{release_date}</span>
+                        </div>
+                        <span className="rate">{rate}</span>
                     </div>
-                    <span className="rate">{rate}</span>
-                </div>
-                <div className="overview">
-                    {overview}
-                </div>
-                <div className="actions">
-                    <button className="offline">Watch Offline</button>
-                    <button className="online">Watch Online</button>
+                    <div className="overview">
+                        {overview}
+                    </div>
+                    <div className="actions">
+                        <button className="offline">Watch Offline</button>
+                        <button className="online">Watch Online</button>
+                    </div>
                 </div>
             </div>
         </MovieOverlayStyled>

@@ -34,58 +34,119 @@ const MovieOverlayStyled = styled.div`
             max-width: 100%;
         }
 
-        .header {
+        .content {
             display: flex;
-            align-items: center;
-            width: 100%;
-            margin-top: 1.5rem;
+            flex-direction: column;
 
-            .title-date {
+            .header {
                 display: flex;
-                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                margin-top: 1.5rem;
 
-                .title {
-                    font-size: .9rem;
+                .title-date {
+                    display: flex;
+                    flex-direction: column;
+
+                    .title {
+                        font-size: .9rem;
+                    }
+
+                    .date {
+                        font-size: .7rem;
+                    }
                 }
 
-                .date {
-                    font-size: .7rem;
-                }
-            }
-            
-            .rate {
-                margin-left: auto;
-                background-color: #f0f0f0;
-                padding: .5rem;
-                border-radius: 2.5px;
-            }
-        }
-
-        .overview {
-            margin: 1.5rem 0;
-            font-size: .8rem;
-        }
-
-        .actions {
-            width: 100%;
-            margin-top: auto;
-            display: flex;
-            justify-content: space-evenly;
-
-            button {
-                cursor: pointer;
-                padding: .5rem 1rem;
-                border: none;
-
-                &.offline {
-                    background-color: white;
-                    border: 2px solid #f0f0f0;
-                }
-
-                &.online {
+                .rate {
+                    margin-left: auto;
                     background-color: #f0f0f0;
+                    padding: .5rem;
+                    border-radius: 2.5px;
                 }
             }
+
+            .overview {
+                margin: 1.5rem 0;
+                font-size: .8rem;
+            }
+
+            .actions {
+                width: 100%;
+                margin-top: auto;
+                display: flex;
+                justify-content: space-evenly;
+
+                button {
+                    cursor: pointer;
+                    padding: .5rem 1rem;
+                    border: none;
+
+                    &.offline {
+                        background-color: white;
+                        border: 2px solid #f0f0f0;
+                    }
+
+                    &.online {
+                        background-color: #f0f0f0;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (min-width: 650px) {
+        .container-box {
+            flex-direction: row;
+            height: 450px;
+            margin: auto;
+            padding: 1rem 0;
+
+            img {
+                width: 30%;
+                height: 100%;
+                padding: 0 1rem;
+            }
+
+            .content {
+                width: 70%;
+                height: 100%;
+                padding: 0 1rem;
+
+                .header {
+                    .title-date {
+                        .title {
+                            font-size: 1.2rem;
+                        }
+
+                        .date {
+                            font-size: .75rem;
+                        }
+                    }
+
+                    .rate {
+                        margin-left: auto;
+                        background-color: #f0f0f0;
+                        padding: .5rem;
+                        border-radius: 2.5px;
+                    }
+                }
+
+                .overview {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .container-box {
+            width: 80%;
+        }
+    }
+
+    @media(min-width: 1200px) {
+        .container-box {
+            width: 60%;
         }
     }
 `;
