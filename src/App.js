@@ -41,6 +41,18 @@ const App = () => {
         return data;
     };
 
+    const mapApiMovieToLocalMovie = (movie) => {
+        return {
+            id: movie.id,
+            image: movie.poster_path ? `${API_IMAGE_PATH}/${movie.poster_path}` : '',
+            title: movie.title,
+            rate: movie.vote_average,
+            release_date: movie.release_date,
+            overview: movie.overview,
+            genres: movie.genre_ids
+        };
+    };
+
     useEffect(() => {
         const loadFromLocalStorageOrRetrieveData = async (localStorageKey, urlToRetrieveFrom, responseHandler) => {
             if (localStorage.getItem(localStorageKey)) {
@@ -65,17 +77,7 @@ const App = () => {
             const topRatedMoviesUrl = `${API_PATH}${API_TOP_RATED_PATH}?api_key=${API_KEY}`;
             const data = await loadFromLocalStorageOrRetrieveData(LOCAL_STORAGE_TOP_RATED, topRatedMoviesUrl, (response) => {
                 const _movies = response.results;
-                return _movies.map((movie) => (
-                    {
-                        id: movie.id,
-                        image: movie.poster_path ? `${API_IMAGE_PATH}/${movie.poster_path}` : '',
-                        title: movie.title,
-                        rate: movie.vote_average,
-                        release_date: movie.release_date,
-                        overview: movie.overview,
-                        genres: movie.genre_ids
-                    }
-                ));
+                return _movies.map(mapApiMovieToLocalMovie);
             });
             setMovies(data);
             setFilteredMovies(data);
@@ -92,17 +94,7 @@ const App = () => {
         const searchUrl = `${API_PATH}${API_SEARCH_PATH}?api_key=${API_KEY}&query=${searchQuery}`;
         const data = await retrieveData(searchUrl, (response) => {
             const _movies = response.results;
-            return _movies.map((movie) => (
-                {
-                    id: movie.id,
-                    image: movie.poster_path ? `${API_IMAGE_PATH}/${movie.poster_path}` : '',
-                    title: movie.title,
-                    rate: movie.vote_average,
-                    release_date: movie.release_date,
-                    overview: movie.overview,
-                    genres: movie.genre_ids
-                }
-            ));
+            return _movies.map(mapApiMovieToLocalMovie);
         });
         setMovies(data);
         setFilteredMovies(data);
