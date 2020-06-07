@@ -3,6 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
 import {
+    SET_SPINNER_LOADING,
     SET_MOVIES,
     Context
 } from '../../store';
@@ -31,6 +32,8 @@ const Search = () => {
     const handleSearch = async () => {
         if (searchInput === '') return;
 
+        dispatch({ type: SET_SPINNER_LOADING });
+
         const searchQuery = encodeURI(searchInput.trim());
         const searchUrl = `${API_PATH}${API_SEARCH_PATH}?api_key=${API_KEY}&query=${searchQuery}`;
         const data = await retrieveData(searchUrl, (response) => {
@@ -39,6 +42,7 @@ const Search = () => {
         });
 
         dispatch({ type: SET_MOVIES, payload: data });
+        dispatch({ type: SET_SPINNER_LOADING });
 
         setSearchInput('');
     };

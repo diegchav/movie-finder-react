@@ -9,6 +9,7 @@ export const OPEN_OVERLAY = 'OPEN_OVERLAY';
 export const CLOSE_OVERLAY = 'CLOSE_OVERLAY';
 export const OPEN_SIDEBAR = 'OPEN_SIDEBAR';
 export const CLOSE_SIDEBAR = 'CLOSE_SIDEBAR';
+export const SET_SPINNER_LOADING = 'SET_SPINNER_LOADING';
 
 const addOrRemoveGenreFilter = (filteredGenres, genreId) => {
     const newFilteredGenres = new Set(filteredGenres);
@@ -78,6 +79,8 @@ const reducer = (state, action) => {
         case CLOSE_SIDEBAR: {
             return { ...state, isSideBarVisible: false };
         }
+        case SET_SPINNER_LOADING:
+            return { ...state, isSpinnerLoading: !state.isSpinnerLoading }
         default:
             return state;
     }
@@ -90,7 +93,8 @@ const initialState = {
     filteredMovies: [],
     selectedMovie: null,
     isOverlayVisible: false,
-    isSideBarVisible: false
+    isSideBarVisible: false,
+    isSpinnerLoading: false
 };
 
 export const Context = createContext();

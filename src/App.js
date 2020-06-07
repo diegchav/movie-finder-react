@@ -7,6 +7,7 @@ import Body from './components/Body/Body';
 import {
     SET_GENRES,
     SET_MOVIES,
+    SET_SPINNER_LOADING,
     Context
 } from './store';
 
@@ -19,7 +20,7 @@ import {
     API_GENRES_PATH,
     API_TOP_RATED_PATH,
     LOCAL_STORAGE_GENRES,
-    LOCAL_STORAGE_TOP_RATED
+    LOCAL_STORAGE_TOP_RATED,
 } from './constants';
 
 import AppStyled from './AppStyled';
@@ -49,6 +50,7 @@ const App = () => {
         };
 
         const loadTopRatedMovies = async () => {
+            dispatch({ type: SET_SPINNER_LOADING });
             const topRatedMoviesUrl = `${API_PATH}${API_TOP_RATED_PATH}?api_key=${API_KEY}`;
             const data = await loadFromLocalStorageOrRetrieveData(LOCAL_STORAGE_TOP_RATED, topRatedMoviesUrl, (response) => {
                 const _movies = response.results;
@@ -56,6 +58,7 @@ const App = () => {
             });
 
             dispatch({ type: SET_MOVIES, payload: data });
+            dispatch({ type: SET_SPINNER_LOADING });
         };
 
         loadGenres();
