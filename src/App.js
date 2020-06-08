@@ -11,6 +11,7 @@ import {
     Context
 } from './store';
 
+import GenreService from './services/genre-service';
 import MovieService from './services/movie-service';
 
 import AppStyled from './AppStyled';
@@ -20,13 +21,13 @@ const App = () => {
 
     useEffect(() => {
         const loadGenres = async () => {
-            const genres = await MovieService.loadGenres();
+            const genres = await GenreService.retrieve();
             dispatch({ type: SET_GENRES, payload: genres });
         };
 
         const loadTopRatedMovies = async () => {
             dispatch({ type: SET_SPINNER_LOADING });
-            const movies = await MovieService.loadTopRatedMovies();
+            const movies = await MovieService.retrieve();
             dispatch({ type: SET_MOVIES, payload: movies });
             dispatch({ type: SET_SPINNER_LOADING });
         };

@@ -4,7 +4,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import {
     SET_SPINNER_LOADING,
-    SET_MOVIES,
+    SEARCH_MOVIES,
     Context
 } from '../../store';
 
@@ -25,9 +25,10 @@ const Search = () => {
     const handleSearch = async () => {
         if (searchInput === '') return;
 
+        const query = searchInput.trim();
         dispatch({ type: SET_SPINNER_LOADING });
-        const movies = await MovieService.searchMovies(searchInput);
-        dispatch({ type: SET_MOVIES, payload: movies });
+        const movies = await MovieService.search(query);
+        dispatch({ type: SEARCH_MOVIES, payload: { movies, query } });
         dispatch({ type: SET_SPINNER_LOADING });
 
         setSearchInput('');

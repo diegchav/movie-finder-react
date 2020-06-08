@@ -15,7 +15,7 @@ const Movie = ({ movie }) => {
 
     return (
         <MovieStyled>
-            <img src={image} alt={title} onClick={() => dispatch({ type: OPEN_OVERLAY, payload: movie })} />
+            <img src={image} alt={title} onClick={() => dispatch({ type: OPEN_OVERLAY, payload: movie })} loading="lazy" />
             <div className="content">
                 <div className="header">
                     <span className="title">{title}</span>

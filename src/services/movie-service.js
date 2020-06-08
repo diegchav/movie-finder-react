@@ -5,40 +5,50 @@ import mapApiMovieToLocalMovie from '../helpers/map-api-movie-to-local-movie';
 import {
     API_PATH,
     API_KEY,
-    API_GENRES_PATH,
     API_TOP_RATED_PATH,
     API_SEARCH_PATH,
-    LOCAL_STORAGE_GENRES,
-    LOCAL_STORAGE_TOP_RATED,
+    LOCAL_STORAGE_MOVIES,
 } from '../constants';
 
 class MovieService {
-    static loadGenres = async () => {
-        const genresUrl = `${API_PATH}${API_GENRES_PATH}?api_key=${API_KEY}`;
-        const data = await loadOrRetrieve(LOCAL_STORAGE_GENRES, genresUrl, (response) => {
-            return response.genres;
-        });
-        return data;
-    }
-
-    static loadTopRatedMovies = async () => {
-        const topRatedMoviesUrl = `${API_PATH}${API_TOP_RATED_PATH}?api_key=${API_KEY}`;
-        const data = await loadOrRetrieve(LOCAL_STORAGE_TOP_RATED, topRatedMoviesUrl, (response) => {
+    static retrieve = async (page = 1) => {
+        const url = `${API_PATH}${API_TOP_RATED_PATH}?api_key=${API_KEY}&page=${page}`;
+        const movies = await loadOrRetrieve(LOCAL_STORAGE_MOVIES, url, (response) => {
             const movies = response.results;
             return movies.map(mapApiMovieToLocalMovie);
         });
-        return data;
+        return movies;
     }
 
-    static searchMovies = async (search) => {
-        const searchQuery = encodeURI(search.trim());
-        const searchUrl = `${API_PATH}${API_SEARCH_PATH}?api_key=${API_KEY}&query=${searchQuery}`;
-        const data = await retrieveData(searchUrl, (response) => {
+    static search = async (query, page = 1) => {
+        const searchQuery = encodeURI(query);
+        const url = `${API_PATH}${API_SEARCH_PATH}?api_key=${API_KEY}&query=${searchQuery}&page=${page}`;
+        const movies = await retrieveData(url, (response) => {
             const movies = response.results;
             return movies.map(mapApiMovieToLocalMovie);
         });
-        return data;
+        localStorage.setItem(LOCAL_STORAGE_MOVIES, JSON.stringify(movies));
+        return movies;
     }
+
+    static load = async (searchQuery, page) => {
+        let url = '';
+        if (searchQuery === '') {
+            url = `${API_PATH}${API_TOP_RATED_PATH}?api_key=${API_KEY}&page=${page}`;
+        } else {
+            url = `${API_PATH}${API_SEARCH_PATH}?api_key=${API_KEY}&query=${searchQuery}&page=${page}`;
+        }
+
+        const movies = await retrieveData(url, (response) => {
+            const movies = response.results;
+            return movies.map(mapApiMovieToLocalMovie);
+        });
+
+        const cachedMovies = JSON.parse(localStorage.getItem(LOCAL_STORAGE_MOVIES));
+        localStorage.setItem(LOCAL_STORAGE_MOVIES, JSON.stringify([...cachedMovies, ...movies]));
+
+        return movies;
+    };
 }
 
 export default MovieService;
