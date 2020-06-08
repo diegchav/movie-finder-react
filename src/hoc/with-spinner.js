@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CirculaProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -15,6 +16,11 @@ const withSpinner = (WrappedComponent) => {
             ? <CustomCirculaProgress />
             : <WrappedComponent {...otherProps} />
     }
+
+    Spinner.propTypes = {
+        isLoading: PropTypes.bool.isRequired
+    };
+
     return Spinner;
 };
 

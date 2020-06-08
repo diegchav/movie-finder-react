@@ -8,9 +8,8 @@ const SideBarStyled = styled.div`
     left: 0;
     background-color: var(--primary-color);
     padding: 1.5rem 1rem;
-    display: flex;
-    flex-direction: column;
     z-index: 1;
+    display: ${props => props.visible ? 'inline-block' : 'none'};
 
     .close {
         display: flex;
@@ -23,7 +22,17 @@ const SideBarStyled = styled.div`
     }
 
     @media (min-width: 768px) {
-        display: none;
+        width: 30%;
+        display: inline-block;
+        position: unset;
+
+        .close {
+            display: none;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        width: 20%;
     }
 `;
 

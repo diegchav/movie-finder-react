@@ -16,21 +16,14 @@ const SideBar = () => {
     const { isSideBarVisible } = state;
 
     return (
-        <>
-        {
-            isSideBarVisible
-            ?
-                <SideBarStyled>
-                    <div className="close">
-                        <IconButton onClick={() => dispatch({ type: CLOSE_SIDEBAR })}>
-                            <CloseIcon />
-                        </IconButton>
-                    </div>
-                    <Filter />
-                </SideBarStyled>
-            : null
-        }
-        </>
+        <SideBarStyled visible={isSideBarVisible}>
+            <div className="close">
+                <IconButton onClick={() => dispatch({ type: CLOSE_SIDEBAR })}>
+                    <CloseIcon />
+                </IconButton>
+            </div>
+            <Filter />
+        </SideBarStyled>
     );
 };
 

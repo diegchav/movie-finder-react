@@ -5,7 +5,7 @@ const NavBarStyled = styled.div`
     align-items: center;
     padding: 0 1rem;
     background-color: var(--primary-color);
-    height: 48px;
+    min-height: 48px;
 
     .title {
         font-size: 1.5rem;

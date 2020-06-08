@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 
 import Movie from '../Movie/Movie';
+import InfiniteScroll from '../InfiniteScroll/InfiniteScroll';
 
 import {
     LOAD_MOVIES,
@@ -15,21 +16,20 @@ const MovieList = () => {
     const { state, dispatch } = useContext(Context);
     const { filteredMovies: movies, currentPage, searchedMovie } = state;
 
-    const handleLoad = async () => {
-        const movies = await MovieService.load(searchedMovie, currentPage);
+    const divRef = useRef();
+
+    const _scrollToLoad = 50;
+
+    const handleLoadMovies = async (page) => {
+        const movies = await MovieService.load(searchedMovie, page);
         dispatch({ type: LOAD_MOVIES, payload: movies });
     };
 
     return (
-        <MovieListStyled>
-            { movies.map((movie) => <Movie key={movie.id} movie={movie} />) }
-            <button
-                style={{ display: movies.length !== 0 ? 'inline-block' : 'none' }}
-                className="load-more"
-                onClick={handleLoad}
-            >
-                Load more
-            </button>
+        <MovieListStyled ref={divRef}>
+            <InfiniteScroll childRef={divRef} scrollOffset={_scrollToLoad} onScroll={() => handleLoadMovies(currentPage)}>
+                { movies.map((movie) => <Movie key={movie.id} movie={movie} />) }
+            </InfiniteScroll>
         </MovieListStyled>
     );
 };
