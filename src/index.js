@@ -5,6 +5,8 @@ import App from './App';
 
 import { ContextProvider } from './store';
 
+import 'fontsource-roboto';
+
 import './index.css';
 
 ReactDOM.render(
