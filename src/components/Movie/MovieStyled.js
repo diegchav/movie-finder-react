@@ -8,7 +8,7 @@ const MovieStyled = styled.div`
 
     img {
         width: 100%;
-        height: 250px;
+        min-height: 250px;
         cursor: pointer;
     }
 
@@ -17,14 +17,21 @@ const MovieStyled = styled.div`
         flex: 1;
         display: flex;
         align-items: center;
+        max-height: 100px;
 
         .header {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-height: 100%;
+            overflow: hidden;
 
             .title {
                 font-size: .9rem;
                 font-weight: bolder;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .rate {
@@ -52,6 +59,7 @@ const MovieStyled = styled.div`
 
         .content {
             width: 65%;
+            min-height: 100%;
             flex-direction: column;
             padding-left: 1rem;
 
@@ -66,7 +74,6 @@ const MovieStyled = styled.div`
             .overview {
                 display: block;
                 margin-top: 1.1rem;
-                overflow:hidden;
                 font-size: .85rem;
             }
         }
