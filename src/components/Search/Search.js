@@ -8,14 +8,7 @@ import {
     Context
 } from '../../store';
 
-import retrieveData from '../../helpers/retrieve-data';
-import mapApiMovieToLocalMovie from '../../helpers/map-api-movie-to-local-movie';
-
-import {
-    API_PATH,
-    API_SEARCH_PATH,
-    API_KEY
-} from '../../constants';
+import MovieService from '../../services/movie-service';
 
 import SearchStyled from './SearchStyled';
 
@@ -33,15 +26,8 @@ const Search = () => {
         if (searchInput === '') return;
 
         dispatch({ type: SET_SPINNER_LOADING });
-
-        const searchQuery = encodeURI(searchInput.trim());
-        const searchUrl = `${API_PATH}${API_SEARCH_PATH}?api_key=${API_KEY}&query=${searchQuery}`;
-        const data = await retrieveData(searchUrl, (response) => {
-            const movies = response.results;
-            return movies.map(mapApiMovieToLocalMovie);
-        });
-
-        dispatch({ type: SET_MOVIES, payload: data });
+        const movies = await MovieService.searchMovies(searchInput);
+        dispatch({ type: SET_MOVIES, payload: movies });
         dispatch({ type: SET_SPINNER_LOADING });
 
         setSearchInput('');

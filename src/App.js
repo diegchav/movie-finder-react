@@ -11,17 +11,7 @@ import {
     Context
 } from './store';
 
-import retrieveData from './helpers/retrieve-data';
-import mapApiMovieToLocalMovie from './helpers/map-api-movie-to-local-movie';
-
-import {
-    API_PATH,
-    API_KEY,
-    API_GENRES_PATH,
-    API_TOP_RATED_PATH,
-    LOCAL_STORAGE_GENRES,
-    LOCAL_STORAGE_TOP_RATED,
-} from './constants';
+import MovieService from './services/movie-service';
 
 import AppStyled from './AppStyled';
 
@@ -29,35 +19,15 @@ const App = () => {
     const { state, dispatch } = useContext(Context);
 
     useEffect(() => {
-        const loadFromLocalStorageOrRetrieveData = async (localStorageKey, urlToRetrieveFrom, responseHandler) => {
-            if (localStorage.getItem(localStorageKey)) {
-                const data = JSON.parse(localStorage.getItem(localStorageKey));
-                return data;
-            }
-
-            const data = await retrieveData(urlToRetrieveFrom, responseHandler);
-            localStorage.setItem(localStorageKey, JSON.stringify(data));
-            return data;
-        };
-
         const loadGenres = async () => {
-            const genresUrl = `${API_PATH}${API_GENRES_PATH}?api_key=${API_KEY}`;
-            const data = await loadFromLocalStorageOrRetrieveData(LOCAL_STORAGE_GENRES, genresUrl, (response) => {
-                return response.genres;
-            });
-
-            dispatch({ type: SET_GENRES, payload: data});
+            const genres = await MovieService.loadGenres();
+            dispatch({ type: SET_GENRES, payload: genres });
         };
 
         const loadTopRatedMovies = async () => {
             dispatch({ type: SET_SPINNER_LOADING });
-            const topRatedMoviesUrl = `${API_PATH}${API_TOP_RATED_PATH}?api_key=${API_KEY}`;
-            const data = await loadFromLocalStorageOrRetrieveData(LOCAL_STORAGE_TOP_RATED, topRatedMoviesUrl, (response) => {
-                const _movies = response.results;
-                return _movies.map(mapApiMovieToLocalMovie);
-            });
-
-            dispatch({ type: SET_MOVIES, payload: data });
+            const movies = await MovieService.loadTopRatedMovies();
+            dispatch({ type: SET_MOVIES, payload: movies });
             dispatch({ type: SET_SPINNER_LOADING });
         };
 
