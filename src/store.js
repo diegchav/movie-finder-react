@@ -69,7 +69,7 @@ const reducer = (state, action) => {
                 movies: action.payload.movies,
                 filteredMovies: action.payload.movies,
                 filteredGenres: new Set(),
-                searchedMovie: action.payload.search,
+                searchedMovie: action.payload.query,
                 currentPage: 2
             };
         }
