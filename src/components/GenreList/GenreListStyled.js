@@ -2,9 +2,14 @@ import styled from 'styled-components';
 
 const GenreListStyled = styled.div`
     margin-bottom: 1rem;
+    overflow-y: scroll;
 
     .title {
         margin-bottom: 1rem;
+    }
+
+    .genres {
+        overflow-y: scroll;
     }
 
     @media (min-width: 650px) {

@@ -9,7 +9,6 @@ const FilterStyled = styled.div`
         height: 100%;
         display: flex;
         flex-direction: column;
-        overflow-y: scroll;
 
         .filter {
             margin-top: auto;
