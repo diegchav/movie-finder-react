@@ -1,6 +1,8 @@
 # Movie Finder
 
-SPA page application to search for movies using the [The Movie Database API](https://developers.themoviedb.org).
+SPA application to search for movies using the [The Movie Database API](https://developers.themoviedb.org).
+
+Take a look at the [demo](https://diegchav.github.io/movie-finder-react).
 
 ## Technologies used
 
