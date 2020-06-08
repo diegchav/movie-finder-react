@@ -1,3 +1,5 @@
+import uuid from 'react-uuid';
+
 import {
     API_IMAGE_PATH,
     DEFAULT_IMAGE
@@ -5,7 +7,7 @@ import {
 
 export default (movie) => {
     return {
-        id: movie.id,
+        id: uuid(),
         image: movie.poster_path ? `${API_IMAGE_PATH}/${movie.poster_path}` : DEFAULT_IMAGE,
         title: movie.title,
         rate: movie.vote_average,
