@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/movie-finder-react/static/css/main.96261924.chunk.css",
-    "main.js": "/movie-finder-react/static/js/main.bbe85765.chunk.js",
-    "main.js.map": "/movie-finder-react/static/js/main.bbe85765.chunk.js.map",
+    "main.js": "/movie-finder-react/static/js/main.a551dfb7.chunk.js",
+    "main.js.map": "/movie-finder-react/static/js/main.a551dfb7.chunk.js.map",
     "runtime-main.js": "/movie-finder-react/static/js/runtime-main.b469a20b.js",
     "runtime-main.js.map": "/movie-finder-react/static/js/runtime-main.b469a20b.js.map",
     "static/js/2.77ea9616.chunk.js": "/movie-finder-react/static/js/2.77ea9616.chunk.js",
     "static/js/2.77ea9616.chunk.js.map": "/movie-finder-react/static/js/2.77ea9616.chunk.js.map",
     "index.html": "/movie-finder-react/index.html",
-    "precache-manifest.205a6d9cf50a7feb2fd67930cb472fe2.js": "/movie-finder-react/precache-manifest.205a6d9cf50a7feb2fd67930cb472fe2.js",
+    "precache-manifest.6c063b13d2171b28e33537ab54fe67b1.js": "/movie-finder-react/precache-manifest.6c063b13d2171b28e33537ab54fe67b1.js",
     "service-worker.js": "/movie-finder-react/service-worker.js",
     "static/css/main.96261924.chunk.css.map": "/movie-finder-react/static/css/main.96261924.chunk.css.map",
     "static/js/2.77ea9616.chunk.js.LICENSE.txt": "/movie-finder-react/static/js/2.77ea9616.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.b469a20b.js",
     "static/js/2.77ea9616.chunk.js",
     "static/css/main.96261924.chunk.css",
-    "static/js/main.bbe85765.chunk.js"
+    "static/js/main.a551dfb7.chunk.js"
   ]
 }
