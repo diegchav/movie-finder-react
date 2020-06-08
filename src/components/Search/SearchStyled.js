@@ -7,11 +7,11 @@ const SearchStyled = styled.div`
         flex: 1;
         padding: 0 1rem;
         font-size: .8rem;
-        border: 1px solid #f0f0f0;
+        border: 1px solid var(--primary-color);
     }
 
     button {
-        background-color: #f0f0f0;
+        background-color: var(--primary-color);
         border-radius: unset;
     }
 `;

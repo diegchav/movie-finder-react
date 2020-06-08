@@ -4,7 +4,7 @@ const NavBarStyled = styled.div`
     display: flex;
     align-items: center;
     padding: 0 1rem;
-    background-color: #f0f0f0;
+    background-color: var(--primary-color);
     height: 48px;
 
     .title {

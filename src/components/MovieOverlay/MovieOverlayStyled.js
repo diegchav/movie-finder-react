@@ -59,7 +59,7 @@ const MovieOverlayStyled = styled.div`
 
                 .rate {
                     margin-left: auto;
-                    background-color: #f0f0f0;
+                    background-color: var(--primary-color);
                     padding: .5rem;
                     border-radius: 2.5px;
                 }
@@ -83,11 +83,11 @@ const MovieOverlayStyled = styled.div`
 
                     &.offline {
                         background-color: white;
-                        border: 2px solid #f0f0f0;
+                        border: 2px solid var(--primary-color);
                     }
 
                     &.online {
-                        background-color: #f0f0f0;
+                        background-color: var(--primary-color);
                     }
                 }
             }
@@ -125,7 +125,7 @@ const MovieOverlayStyled = styled.div`
 
                     .rate {
                         margin-left: auto;
-                        background-color: #f0f0f0;
+                        background-color: var(--primary-color);
                         padding: .5rem;
                         border-radius: 2.5px;
                     }

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const FilterStyled = styled.div`
     padding: 1rem;
-    background-color: #f0f0f0;
+    background-color: var(--primary-color);
     height: 100%;
 
     .container {

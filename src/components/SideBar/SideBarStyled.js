@@ -6,7 +6,7 @@ const SideBarStyled = styled.div`
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #f0f0f0;
+    background-color: var(--primary-color);
     padding: 1.5rem 1rem;
     display: flex;
     flex-direction: column;

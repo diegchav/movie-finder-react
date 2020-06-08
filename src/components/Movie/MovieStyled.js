@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const MovieStyled = styled.div`
-    border: 1px solid #f0f0f0;
+    border: 1px solid var(--primary-color);
     display: flex;
     flex-direction: column;
     height: 350px;
@@ -29,7 +29,7 @@ const MovieStyled = styled.div`
 
             .rate {
                 margin-left: auto;
-                background-color: #f0f0f0;
+                background-color: var(--primary-color);
                 padding: .5rem;
                 border-radius: 2.5px;
             }
