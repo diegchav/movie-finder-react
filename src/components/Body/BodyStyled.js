@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const BodyStyled = styled.div`
     width: 100%;
-    flex: 1;
+    max-height: 100%;
     display: flex;
 `;
 

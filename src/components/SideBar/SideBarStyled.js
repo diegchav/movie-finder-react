@@ -6,6 +6,7 @@ const SideBarStyled = styled.div`
     position: fixed;
     top: 0;
     left: 0;
+    // bottom: 0;
     background-color: var(--primary-color);
     padding: 1.5rem 1rem;
     z-index: 1;
@@ -23,8 +24,10 @@ const SideBarStyled = styled.div`
 
     @media (min-width: 768px) {
         width: 30%;
+        max-height: 100%;
         display: inline-block;
         position: unset;
+        padding: 0;
 
         .close {
             display: none;

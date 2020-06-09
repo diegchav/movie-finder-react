@@ -17,9 +17,7 @@ const NavBarStyled = styled.div`
     }
 
     @media (min-width: 768px) {
-        .menu-icon {
-            display: none;
-        }
+        display: none;
     }
 `;
 
