@@ -1,23 +1,29 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const InfiniteScroll = ({ childRef, scrollOffset, onScroll, children }) => {
+const InfiniteScroll = ({ childRef, scrollOffset, onScroll, shouldScroll, children }) => {
     useEffect(() => {
-        const handleScroll = () => {
-            const windowHeight = window.innerHeight;
-            const windowScrollY = window.scrollY;
-            const childScrollY = childRef.current.offsetHeight;
+        const containerElement = childRef.current;
 
-            const shouldLoad = windowHeight + windowScrollY >= (childScrollY - scrollOffset);
+        const handleScroll = () => {
+            if (!shouldScroll) return;
+
+            const lastChildElement = containerElement.lastElementChild;
+            const lastChildHeight = lastChildElement.offsetHeight;
+            const containerVisisbleHeight = containerElement.offsetHeight;
+            const containerScrollHeight = containerElement.scrollHeight;
+            const containerScrollOffset = containerElement.scrollTop + containerVisisbleHeight;
+
+            const shouldLoad = (containerScrollHeight - containerScrollOffset) <= (lastChildHeight / 2);
             if (shouldLoad) onScroll();
         };
 
-        window.addEventListener('scroll', handleScroll, false);
+        containerElement.addEventListener('scroll', handleScroll, false);
 
         return () => {
-            window.removeEventListener('scroll', handleScroll, false);
+            containerElement.removeEventListener('scroll', handleScroll, false);
         };
-    }, [childRef, scrollOffset, onScroll]);
+    }, [childRef, scrollOffset, onScroll, shouldScroll]);
 
     return (
         <>
@@ -29,7 +35,8 @@ const InfiniteScroll = ({ childRef, scrollOffset, onScroll, children }) => {
 InfiniteScroll.propTypes = {
     childRef: PropTypes.object.isRequired,
     scrollOffset: PropTypes.number.isRequired,
-    onScroll: PropTypes.func.isRequired
+    onScroll: PropTypes.func.isRequired,
+    shouldScroll: PropTypes.bool.isRequired
 };
 
 export default InfiniteScroll;
