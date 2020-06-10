@@ -1,7 +1,8 @@
 import React, { createContext, useReducer } from 'react';
 
+import { GENRES } from './constants';
+
 // Action types
-export const SET_GENRES = 'SET_GENRES';
 export const ADD_OR_REMOVE_GENRE_FILTER = 'ADD_OR_REMOVE_GENRE_FILTER';
 export const SET_MOVIES = 'SET_MOVIES';
 export const SEARCH_MOVIES = 'SEARCH_MOVIES';
@@ -42,9 +43,6 @@ const filterMovies = (movies, filteredGenres) => {
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case SET_GENRES: {
-            return { ...state, genres: action.payload };
-        }
         case ADD_OR_REMOVE_GENRE_FILTER: {
             return { ...state, filteredGenres: addOrRemoveGenreFilter(state.filteredGenres, action.payload) };
         }
@@ -113,7 +111,7 @@ const reducer = (state, action) => {
 };
 
 const initialState = {
-    genres: [],
+    genres: GENRES.map((genre, index) => ({ id: index + 1, name: genre })),
     filteredGenres: new Set(),
     movies: [],
     filteredMovies: [],
