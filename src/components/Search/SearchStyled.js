@@ -33,7 +33,7 @@ const SearchStyled = styled.div`
 
         .search {
             input[type=text] {
-                border-bottom: 2px solid var(--border-secundary-color);
+                border: 2px solid var(--border-secundary-color);
             }
         }
     }
