@@ -54,7 +54,6 @@ const MovieStyled = styled.div`
 
     @media (min-width: 768px) {
         flex-direction: row;
-        padding: .5rem;
         height: 300px;
 
         img {
@@ -66,7 +65,8 @@ const MovieStyled = styled.div`
             width: 65%;
             min-height: 100%;
             flex-direction: column;
-            padding-left: 1rem;
+            padding: 1rem;
+            border-left: 1px solid var(--border-secundary-color);
 
             .header {
                 width: 100%;
