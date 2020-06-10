@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/movie-finder-react/static/css/main.1fc43258.chunk.css",
-    "main.js": "/movie-finder-react/static/js/main.c89b2e07.chunk.js",
-    "main.js.map": "/movie-finder-react/static/js/main.c89b2e07.chunk.js.map",
+    "main.js": "/movie-finder-react/static/js/main.7a7b6472.chunk.js",
+    "main.js.map": "/movie-finder-react/static/js/main.7a7b6472.chunk.js.map",
     "runtime-main.js": "/movie-finder-react/static/js/runtime-main.b469a20b.js",
     "runtime-main.js.map": "/movie-finder-react/static/js/runtime-main.b469a20b.js.map",
     "static/css/2.c76a9563.chunk.css": "/movie-finder-react/static/css/2.c76a9563.chunk.css",
-    "static/js/2.f9413a8f.chunk.js": "/movie-finder-react/static/js/2.f9413a8f.chunk.js",
-    "static/js/2.f9413a8f.chunk.js.map": "/movie-finder-react/static/js/2.f9413a8f.chunk.js.map",
+    "static/js/2.8b696bdd.chunk.js": "/movie-finder-react/static/js/2.8b696bdd.chunk.js",
+    "static/js/2.8b696bdd.chunk.js.map": "/movie-finder-react/static/js/2.8b696bdd.chunk.js.map",
     "index.html": "/movie-finder-react/index.html",
-    "precache-manifest.1f6ab8cc7038824434f2debc73f677c7.js": "/movie-finder-react/precache-manifest.1f6ab8cc7038824434f2debc73f677c7.js",
+    "precache-manifest.3e37902b79b539e7fce9d07dfbfb3d85.js": "/movie-finder-react/precache-manifest.3e37902b79b539e7fce9d07dfbfb3d85.js",
     "service-worker.js": "/movie-finder-react/service-worker.js",
     "static/css/2.c76a9563.chunk.css.map": "/movie-finder-react/static/css/2.c76a9563.chunk.css.map",
     "static/css/main.1fc43258.chunk.css.map": "/movie-finder-react/static/css/main.1fc43258.chunk.css.map",
-    "static/js/2.f9413a8f.chunk.js.LICENSE.txt": "/movie-finder-react/static/js/2.f9413a8f.chunk.js.LICENSE.txt",
+    "static/js/2.8b696bdd.chunk.js.LICENSE.txt": "/movie-finder-react/static/js/2.8b696bdd.chunk.js.LICENSE.txt",
     "static/media/index.css": "/movie-finder-react/static/media/roboto-latin-900-normal.bb1e4dc6.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.b469a20b.js",
     "static/css/2.c76a9563.chunk.css",
-    "static/js/2.f9413a8f.chunk.js",
+    "static/js/2.8b696bdd.chunk.js",
     "static/css/main.1fc43258.chunk.css",
-    "static/js/main.c89b2e07.chunk.js"
+    "static/js/main.7a7b6472.chunk.js"
   ]
 }
