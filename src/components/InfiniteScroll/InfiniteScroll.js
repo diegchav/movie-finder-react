@@ -9,6 +9,11 @@ const InfiniteScroll = ({ childRef, scrollOffset, onScroll, shouldScroll, childr
             if (!shouldScroll) return;
 
             const lastChildElement = containerElement.lastElementChild;
+            // If there are no elements while applying filters, don't scroll.
+            if (lastChildElement === undefined) {
+                return;
+            }
+
             const lastChildHeight = lastChildElement.offsetHeight;
             const containerVisisbleHeight = containerElement.offsetHeight;
             const containerScrollHeight = containerElement.scrollHeight;
