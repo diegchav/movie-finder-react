@@ -53,13 +53,15 @@ const MovieOverlayStyled = styled.div`
                     }
 
                     .date {
+                        margin-top: .25rem;
                         font-size: .7rem;
                     }
                 }
 
                 .rate {
                     margin-left: auto;
-                    background-color: var(--primary-color);
+                    background-color: var(--secundary-color);
+                    border: 1px solid var(--border-secundary-color);
                     padding: .5rem;
                     border-radius: 2.5px;
                 }
@@ -74,7 +76,7 @@ const MovieOverlayStyled = styled.div`
                 width: 100%;
                 margin-top: auto;
                 display: flex;
-                justify-content: space-evenly;
+                flex-direction: column;
 
                 button {
                     cursor: pointer;
@@ -82,12 +84,34 @@ const MovieOverlayStyled = styled.div`
                     border: none;
 
                     &.offline {
-                        background-color: white;
-                        border: 2px solid var(--primary-color);
+                        background-color: var(--primary-color);
+                        border: 1px solid var(--border-primary-color);
+                        margin-bottom: .25rem;
                     }
 
                     &.online {
-                        background-color: var(--primary-color);
+                        background-color: var(--secundary-color);
+                        border: 1px solid var(--border-secundary-color);
+                        margin-top: .25rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (min-width: 336px) {
+        .container-box {
+            .content {
+                .actions {
+                    flex-direction: row;
+                    justify-content: space-evenly;
+
+                    button.offline {
+                        margin-bottom: 0;
+                    }
+
+                    button.online {
+                        margin-top: 0;
                     }
                 }
             }
@@ -102,13 +126,13 @@ const MovieOverlayStyled = styled.div`
             padding: 1rem 0;
 
             img {
-                width: 30%;
+                width: 40%;
                 height: 100%;
                 padding: 0 1rem;
             }
 
             .content {
-                width: 70%;
+                width: 60%;
                 height: 100%;
                 padding: 0 1rem;
 
@@ -125,7 +149,6 @@ const MovieOverlayStyled = styled.div`
 
                     .rate {
                         margin-left: auto;
-                        background-color: var(--primary-color);
                         padding: .5rem;
                         border-radius: 2.5px;
                     }

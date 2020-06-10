@@ -8,21 +8,22 @@ import {
     Context
 } from '../../store';
 
+import GenreStyled from './GenreStyled';
+
 const Genre = ({ id, name, isFiltered }) => {
     const { dispatch } = useContext(Context);
 
     return (
-        <div>
+        <GenreStyled>
             <FormControlLabel
                 control={
                     <Checkbox
-                        style={{ color: 'black' }}
                         checked={isFiltered}
                         onChange={() => dispatch({ type: ADD_OR_REMOVE_GENRE_FILTER, payload: id })} />
                 }
                 label={name}
             />
-        </div>
+        </GenreStyled>
     );
 };
 

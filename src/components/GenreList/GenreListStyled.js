@@ -5,6 +5,7 @@ const GenreListStyled = styled.div`
     overflow-y: scroll;
 
     .title {
+        font-size: 1.5rem;
         margin-bottom: 1rem;
     }
 

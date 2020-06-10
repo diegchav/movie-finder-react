@@ -16,7 +16,7 @@ const NavBar = () => {
         <NavBarStyled>
             <h1 className="title">Movie Finder</h1>
             <IconButton className="menu-icon" onClick={() => dispatch({ type: OPEN_SIDEBAR })}>
-                <MenuIcon style={{ color: 'black' }} />
+                <MenuIcon />
             </IconButton>
         </NavBarStyled>
     );

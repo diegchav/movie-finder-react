@@ -3,9 +3,9 @@ import styled from 'styled-components';
 const MovieListStyled = styled.div`
     max-height: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: .5rem;
-    margin-top: 1rem;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1rem;
+    margin: 1rem 0;
     overflow-y: scroll;
 
     .load-more {
@@ -19,7 +19,7 @@ const MovieListStyled = styled.div`
     }
 
     @media (min-width: 450px) {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
 
         .load-more {
             grid-column: span 3;
@@ -27,7 +27,7 @@ const MovieListStyled = styled.div`
     }
 
     @media (min-width: 650px) {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
 
         .load-more {
             grid-column: span 4;

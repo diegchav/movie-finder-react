@@ -36,9 +36,11 @@ const Search = () => {
 
     return (
         <SearchStyled>
-            <input type="text" placeholder="Search movie" value={searchInput} onChange={handleChange} autoFocus />
-            <IconButton onClick={handleSearch}>
-                <SearchIcon style={{ color: 'black' }} />
+            <div className="search">
+                <input type="text" placeholder="Search movie" value={searchInput} onChange={handleChange} autoFocus />
+            </div>
+            <IconButton className="search-icon" onClick={handleSearch}>
+                <SearchIcon />
             </IconButton>
         </SearchStyled>
     );

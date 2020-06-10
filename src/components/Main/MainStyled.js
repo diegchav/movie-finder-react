@@ -5,7 +5,7 @@ const MainStyled = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
 
     @media (min-width: 768px) {
         width: 70%;

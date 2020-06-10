@@ -6,8 +6,8 @@ const SideBarStyled = styled.div`
     position: fixed;
     top: 0;
     left: 0;
-    // bottom: 0;
-    background-color: var(--primary-color);
+    background-color: var(--secundary-color);
+    border-right: 1px solid var(--border-secundary-color);
     padding: 1.5rem 1rem;
     z-index: 1;
     display: ${props => props.visible ? 'inline-block' : 'none'};

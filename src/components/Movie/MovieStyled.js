@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
 const MovieStyled = styled.div`
-    border: 1px solid var(--primary-color);
+    width: 100%;
+    height: 350px;
     display: flex;
     flex-direction: column;
-    height: 350px;
+    border: 1px solid var(--border-secundary-color);
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgba(var(--dark-gray), .1);
 
     img {
         width: 100%;
@@ -32,13 +35,15 @@ const MovieStyled = styled.div`
                 font-weight: bolder;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                margin-right: 1rem;
             }
 
             .rate {
                 margin-left: auto;
-                background-color: var(--primary-color);
+                background-color: var(--secundary-color);
                 padding: .5rem;
-                border-radius: 2.5px;
+                border: 1px solid var(--border-secundary-color);
+                border-radius: 5px;
             }
         }
 
